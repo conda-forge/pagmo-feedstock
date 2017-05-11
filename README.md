@@ -1,7 +1,7 @@
 About pagmo
 ===========
 
-Home: https://github.com/esa/pagmo2
+Home: https://esa.github.io/pagmo2/
 
 Package license: GPL v3 and LGPL v3
 
