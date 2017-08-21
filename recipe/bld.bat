@@ -1,7 +1,9 @@
 mkdir build
 cd build
 
-cmake ^
+dir /p %LIBRARY_PREFIX%\lib
+
+cmake -LAH ^
     -G "%CMAKE_GENERATOR%" ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
