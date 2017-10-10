@@ -9,26 +9,26 @@ source:
   sha256: ebea1ba004b85f6199a9d53a5969e18449f2923c2976c465e5755d0a42efab7f
 
 build:
-  number: 0
-  skip: true  # [(win and py<35) or win32]
+  number: 1
+  skip: true  # [(win and py<36) or win32]
   features:
-    - vc14  # [win and py>=35]
+    - vc14  # [win and py>=36]
 
 requirements:
   build:
     - python              # [win]
-    - vc 14               # [win and py>=35]
+    - vc 14               # [win and py>=36]
     - toolchain
     - cmake
     - eigen
     - nlopt
-    - boost-cpp 1.63.*
+    - boost-cpp 1.64.*
     - ipopt               # [unix]
   run:
-    - vc 14               # [win and py>=35]
+    - vc 14               # [win and py>=36]
     - eigen
     - nlopt
-    - boost-cpp 1.63.*
+    - boost-cpp 1.64.*
     - ipopt               # [unix]
 
 test:
