@@ -11,24 +11,21 @@ source:
 build:
   number: 0
   skip: true  # [(win and py<36) or win32]
-  features:
-    - vc14  # [win and py>=36]
 
 requirements:
   build:
-    - python              # [win]
-    - vc 14               # [win and py>=36]
-    - toolchain
     - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - eigen
     - nlopt
-    - boost-cpp 1.66.0
+    - boost-cpp
     - ipopt               # [unix]
   run:
-    - vc 14               # [win and py>=36]
     - eigen
     - nlopt
-    - boost-cpp 1.66.0
+    - boost-cpp
     - ipopt               # [unix]
 
 test:
