@@ -1,12 +1,17 @@
 boost_cpp:
 - 1.67.0
 c_compiler:
-- vs2008
+- vs2015
 cxx_compiler:
-- vs2008
+- vs2015
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
+  vc:
+    max_pin: x
+vc:
+- '14'
 zip_keys:
-- - c_compiler
+- - vc
+  - c_compiler
   - cxx_compiler
