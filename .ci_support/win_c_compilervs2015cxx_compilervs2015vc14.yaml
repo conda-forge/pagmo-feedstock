@@ -1,5 +1,3 @@
-boost_cpp:
-- 1.67.0
 c_compiler:
 - vs2015
 channel_sources:
@@ -9,13 +7,11 @@ channel_targets:
 cxx_compiler:
 - vs2015
 pin_run_as_build:
-  boost-cpp:
-    max_pin: x.x.x
   vc:
     max_pin: x
 vc:
 - '14'
 zip_keys:
-- - vc
-  - c_compiler
+- - c_compiler
   - cxx_compiler
+  - vc
