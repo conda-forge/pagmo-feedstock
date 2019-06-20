@@ -6,6 +6,7 @@ cd build
 if [[ "$(uname)" == "Darwin" ]]; then
     export ENABLE_TESTS=no
 else
+    LDFLAGS="-lrt ${LDFLAGS}"
     export ENABLE_TESTS=yes
 fi
 
