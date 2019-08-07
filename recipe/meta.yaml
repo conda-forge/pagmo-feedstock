@@ -21,11 +21,15 @@ requirements:
     - eigen
     - nlopt
     - boost-cpp
+    - tbb
+    - tbb-devel
     - ipopt               # [unix]
   run:
     - eigen
     - nlopt
     - boost-cpp
+    - tbb
+    - tbb-devel
     - ipopt               # [unix]
 
 test:
