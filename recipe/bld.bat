@@ -14,6 +14,8 @@ cmake ^
 
 cmake --build . --config Release
 
+set PATH=%PATH%;%CD%\Release
+
 ctest
 
 cmake --build . --config Release --target install
