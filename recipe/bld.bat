@@ -12,10 +12,6 @@ cmake ^
     -DPAGMO_BUILD_TUTORIALS=yes ^
     ..
 
-cmake --build . --config Release
-
-set PATH=%PATH%;%CD%\Release
+cmake --build . --config Release --target install
 
 ctest -C Release
-
-cmake --build . --config Release --target install
