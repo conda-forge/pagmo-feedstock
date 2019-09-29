@@ -12,6 +12,7 @@ fi
 
 cmake \
     -DBoost_NO_BOOST_CMAKE=ON \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DPAGMO_WITH_EIGEN3=yes \
