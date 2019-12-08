@@ -26,12 +26,12 @@ outputs:
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt
+        - ipopt  # [unix]
       run:
         # NOTE: nlopt and tbb
         # use run_exports().
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
-        - ipopt
+        - ipopt  # [unix]
     files:
       - lib/libpagmo*{{ SHLIB_EXT }}   # [not win]
       - lib/libpagmo.so.*              # [linux]
@@ -54,13 +54,13 @@ outputs:
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt
+        - ipopt  # [unix]
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
         - boost-cpp
         - tbb-devel
-        - ipopt
+        - ipopt  # [unix]
     files:
       - include/pagmo            # [not win]
       - lib/cmake/pagmo          # [not win]
