@@ -69,6 +69,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pagmo-green.svg)](https://anaconda.org/conda-forge/pagmo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pagmo.svg)](https://anaconda.org/conda-forge/pagmo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pagmo.svg)](https://anaconda.org/conda-forge/pagmo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pagmo.svg)](https://anaconda.org/conda-forge/pagmo) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pagmo--devel-green.svg)](https://anaconda.org/conda-forge/pagmo-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pagmo-devel.svg)](https://anaconda.org/conda-forge/pagmo-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pagmo-devel.svg)](https://anaconda.org/conda-forge/pagmo-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pagmo-devel.svg)](https://anaconda.org/conda-forge/pagmo-devel) |
 
 Installing pagmo
 ================
@@ -79,10 +80,10 @@ Installing `pagmo` from the `conda-forge` channel can be achieved by adding `con
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `pagmo` can be installed with:
+Once the `conda-forge` channel has been enabled, `pagmo, pagmo-devel` can be installed with:
 
 ```
-conda install pagmo
+conda install pagmo pagmo-devel
 ```
 
 It is possible to list all of the versions of `pagmo` available on your platform with:
@@ -106,7 +107,7 @@ A feedstock is made up of a conda recipe (the instructions on what and how to bu
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
+and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
 [Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 
