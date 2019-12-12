@@ -48,6 +48,10 @@ outputs:
       run_exports:
         # API/ABI change at minor rev bumps.
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
+        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
+        - {{ pin_compatible('tbb', max_pin=None) }}
+        - {{ pin_compatible('nlopt', max_pin='x.x') }}
+        - {{ pin_compatible('ipopt', max_pin='x.x') }}
     requirements:
       host:
         - eigen
