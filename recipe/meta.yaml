@@ -9,33 +9,73 @@ source:
   sha256: 7756cf4b4a427a856137c40c3fdf27422fcf546249b70f9ba4c213ef1fbee051
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win and vc<14]
 
 requirements:
   build:
-    - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  host:
-    - eigen
-    - nlopt
-    - boost-cpp
-    - tbb
-    - tbb-devel
-    - ipopt               # [unix]
-  run:
-    - eigen
-    - nlopt
-    - boost-cpp
-    - tbb
-    - tbb-devel
-    - ipopt               # [unix]
+    - cmake
 
-test:
-  commands:
-    - test -f $PREFIX/include/pagmo/pagmo.hpp               # [unix]
-    - if not exist %LIBRARY_INC%\\pagmo\\pagmo.hpp exit 1   # [win]
+outputs:
+  - name: pagmo
+    requirements:
+      host:
+        - eigen
+        - nlopt
+        - boost-cpp
+        - tbb-devel
+        - ipopt  # [unix]
+      run:
+        # NOTE: nlopt and tbb
+        # use run_exports().
+        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
+        - ipopt  # [unix]
+    files:
+      - lib/libpagmo*{{ SHLIB_EXT }}   # [not win]
+      - lib/libpagmo.so.*              # [linux]
+      - lib/libpagmo.*.dylib           # [osx]
+      - Library/bin/pagmo.dll          # [win]
+    test:
+      commands:
+        - test -f $PREFIX/lib/libpagmo.so                                     # [linux]
+        - test -f $PREFIX/lib/libpagmo.dylib                                  # [osx]
+        - if not exist %PREFIX%\\Library\\bin\\pagmo.dll exit 1               # [win]
+
+  - name: pagmo-devel
+    build:
+      run_exports:
+        # API/ABI change at minor rev bumps.
+        - {{ pin_subpackage('pagmo', max_pin='x.x') }}
+        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
+        - {{ pin_compatible('tbb', max_pin=None) }}
+        - {{ pin_compatible('nlopt', max_pin='x.x') }}
+        - {{ pin_compatible('ipopt', max_pin='x.x') }}
+    requirements:
+      host:
+        - eigen
+        - nlopt
+        - boost-cpp
+        - tbb-devel
+        - ipopt  # [unix]
+      run:
+        - {{ pin_subpackage("pagmo", exact=True) }}
+        - eigen
+        - boost-cpp
+        - tbb-devel
+        - ipopt  # [unix]
+    files:
+      - include/pagmo            # [not win]
+      - lib/cmake/pagmo          # [not win]
+      - Library/include/pagmo    # [win]
+      - Library/lib/pagmo.lib    # [win]
+      - Library/lib/cmake/pagmo  # [win]
+    test:
+      commands:
+        - test -f $PREFIX/include/pagmo/config.hpp                            # [unix]
+        - if not exist %PREFIX%\\Library\\include\\pagmo\\config.hpp exit 1   # [win]
+        - if not exist %PREFIX%\\Library\\lib\\pagmo.lib exit 1               # [win]
 
 about:
   home: https://esa.github.io/pagmo2/
