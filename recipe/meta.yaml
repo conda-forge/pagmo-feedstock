@@ -9,7 +9,7 @@ source:
   sha256: 7756cf4b4a427a856137c40c3fdf27422fcf546249b70f9ba4c213ef1fbee051
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win and vc<14]
 
 requirements:
@@ -46,10 +46,13 @@ outputs:
   - name: pagmo-devel
     build:
       run_exports:
-        # API/ABI change at minor rev bumps.
+        # NOTE: don't need to list tbb, as
+        # the pagmo public headers do not
+        # use tbb (thus, a dependee of pagmo
+        # does not need to link to tbb).
+        # pagmo's API and ABI change at minor rev bumps.
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
-        - {{ pin_compatible('tbb', max_pin=None) }}
         - {{ pin_compatible('nlopt', max_pin='x.x') }}
         - {{ pin_compatible('ipopt', max_pin='x.x') }}
     requirements:
