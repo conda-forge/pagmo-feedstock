@@ -9,13 +9,14 @@ source:
   sha256: 4431e61cae9f27b692b78b30e2a08362dfd35960c3840dae04ef28af8305e621
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('c') }}              # [not win]
+    - vs2017_{{ target_platform  }}    # [win]
     - cmake
 
 outputs:
