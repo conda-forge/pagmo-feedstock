@@ -7,7 +7,7 @@ Package license: GPL v3 and LGPL v3
 
 Feedstock license: BSD 3-Clause
 
-Summary: A C++ / Python platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
+Summary: A C++ platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
 
 
 
