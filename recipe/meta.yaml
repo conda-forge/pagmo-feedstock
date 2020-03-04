@@ -29,10 +29,9 @@ outputs:
         - tbb-devel
         - ipopt  # [unix]
       run:
-        # NOTE: nlopt and tbb
+        # NOTE: nlopt, tbb and ipopt
         # use run_exports().
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
-        - ipopt  # [unix]
     files:
       - lib/libpagmo*{{ SHLIB_EXT }}   # [not win]
       - lib/libpagmo.so.*              # [linux]
@@ -68,7 +67,6 @@ outputs:
         - eigen
         - boost-cpp
         - tbb-devel
-        - ipopt  # [unix]
     files:
       - include/pagmo            # [not win]
       - lib/cmake/pagmo          # [not win]
@@ -85,7 +83,7 @@ about:
   home: https://esa.github.io/pagmo2/
   license: GPL v3 and LGPL v3
   license_file: COPYING.lgpl3
-  summary: A C++ / Python platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
+  summary: A C++ platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
 
 extra:
   recipe-maintainers:
