@@ -1,0 +1,185 @@
+diff --git a/src/algorithms/gaco.cpp b/src/algorithms/gaco.cpp
+index bdd5f0ed..308bedf8 100644
+--- a/src/algorithms/gaco.cpp
++++ b/src/algorithms/gaco.cpp
+@@ -39,7 +39,6 @@ see https://www.gnu.org/licenses/. */
+ #include <vector>
+ 
+ #include <boost/math/constants/constants.hpp>
+-#include <boost/serialization/optional.hpp>
+ 
+ #include <pagmo/algorithm.hpp>
+ #include <pagmo/algorithms/gaco.hpp>
+@@ -51,6 +50,10 @@ see https://www.gnu.org/licenses/. */
+ #include <pagmo/types.hpp>
+ #include <pagmo/utils/constrained.hpp>
+ 
++// NOTE: apparently this must be included *after*
++// the other serialization headers.
++#include <boost/serialization/optional.hpp>
++
+ namespace pagmo
+ {
+ 
+@@ -75,14 +78,12 @@ gaco::gaco(unsigned gen, unsigned ker, double q, double oracle, double acc, unsi
+                         + std::to_string(threshold) + " was detected");
+     }
+     if (threshold < 1 && gen != 0 && memory == true) {
+-        pagmo_throw(std::invalid_argument,
+-                    "If memory is active, the threshold parameter must be >=1 while a value of "
+-                        + std::to_string(threshold) + " was detected");
++        pagmo_throw(std::invalid_argument, "If memory is active, the threshold parameter must be >=1 while a value of "
++                                               + std::to_string(threshold) + " was detected");
+     }
+     if (q < 0.) {
+-        pagmo_throw(std::invalid_argument,
+-                    "The convergence speed parameter must be >=0  while a value of " + std::to_string(q)
+-                        + " was detected");
++        pagmo_throw(std::invalid_argument, "The convergence speed parameter must be >=0  while a value of "
++                                               + std::to_string(q) + " was detected");
+     }
+ }
+ 
+@@ -153,9 +154,8 @@ population gaco::evolve(population pop) const
+                     get_name() + " cannot work with a solution archive bigger than the population size");
+     }
+     if (n_obj != 1u) {
+-        pagmo_throw(std::invalid_argument,
+-                    "Multiple objectives detected in " + prob.get_name() + " instance. " + get_name()
+-                        + " cannot deal with them");
++        pagmo_throw(std::invalid_argument, "Multiple objectives detected in " + prob.get_name() + " instance. "
++                                               + get_name() + " cannot deal with them");
+     }
+ 
+     // ---------------------------------------------------------------------------------------------------------
+diff --git a/src/algorithms/maco.cpp b/src/algorithms/maco.cpp
+index c297f0d1..f88ff5b0 100644
+--- a/src/algorithms/maco.cpp
++++ b/src/algorithms/maco.cpp
+@@ -39,7 +39,6 @@ see https://www.gnu.org/licenses/. */
+ #include <vector>
+ 
+ #include <boost/math/constants/constants.hpp>
+-#include <boost/serialization/optional.hpp>
+ 
+ #include <pagmo/algorithm.hpp>
+ #include <pagmo/algorithms/maco.hpp>
+@@ -58,6 +57,10 @@ see https://www.gnu.org/licenses/. */
+ #include <pagmo/utils/hypervolume.hpp>
+ #include <pagmo/utils/multi_objective.hpp>
+ 
++// NOTE: apparently this must be included *after*
++// the other serialization headers.
++#include <boost/serialization/optional.hpp>
++
+ namespace pagmo
+ {
+ 
+diff --git a/src/algorithms/nsga2.cpp b/src/algorithms/nsga2.cpp
+index edd35bae..b06956c9 100644
+--- a/src/algorithms/nsga2.cpp
++++ b/src/algorithms/nsga2.cpp
+@@ -39,8 +39,6 @@ see https://www.gnu.org/licenses/. */
+ #include <utility>
+ #include <vector>
+ 
+-#include <boost/serialization/optional.hpp>
+-
+ #include <pagmo/algorithm.hpp>
+ #include <pagmo/algorithms/nsga2.hpp>
+ #include <pagmo/exceptions.hpp>
+@@ -52,6 +50,10 @@ see https://www.gnu.org/licenses/. */
+ #include <pagmo/utils/genetic_operators.hpp>
+ #include <pagmo/utils/multi_objective.hpp>
+ 
++// NOTE: apparently this must be included *after*
++// the other serialization headers.
++#include <boost/serialization/optional.hpp>
++
+ namespace pagmo
+ {
+ 
+@@ -215,7 +217,7 @@ population nsga2::evolve(population pop) const
+                 parent1_idx = detail::mo_tournament_selection_impl(shuffle1[i], shuffle1[i + 1], ndr, pop_cd, m_e);
+                 parent2_idx = detail::mo_tournament_selection_impl(shuffle1[i + 2], shuffle1[i + 3], ndr, pop_cd, m_e);
+                 children = detail::sbx_crossover_impl(pop.get_x()[parent1_idx], pop.get_x()[parent2_idx], bounds, dim_i,
+-                                                 m_cr, m_eta_c, m_e);
++                                                      m_cr, m_eta_c, m_e);
+                 detail::polynomial_mutation_impl(children.first, bounds, dim_i, m_m, m_eta_m, m_e);
+                 detail::polynomial_mutation_impl(children.second, bounds, dim_i, m_m, m_eta_m, m_e);
+ 
+@@ -226,7 +228,7 @@ population nsga2::evolve(population pop) const
+                 parent1_idx = detail::mo_tournament_selection_impl(shuffle2[i], shuffle2[i + 1], ndr, pop_cd, m_e);
+                 parent2_idx = detail::mo_tournament_selection_impl(shuffle2[i + 2], shuffle2[i + 3], ndr, pop_cd, m_e);
+                 children = detail::sbx_crossover_impl(pop.get_x()[parent1_idx], pop.get_x()[parent2_idx], bounds, dim_i,
+-                                                 m_cr, m_eta_c, m_e);
++                                                      m_cr, m_eta_c, m_e);
+                 detail::polynomial_mutation_impl(children.first, bounds, dim_i, m_m, m_eta_m, m_e);
+                 detail::polynomial_mutation_impl(children.second, bounds, dim_i, m_m, m_eta_m, m_e);
+                 // we use prob to evaluate the fitness so
+@@ -268,7 +270,7 @@ population nsga2::evolve(population pop) const
+                 parent1_idx = detail::mo_tournament_selection_impl(shuffle1[i], shuffle1[i + 1], ndr, pop_cd, m_e);
+                 parent2_idx = detail::mo_tournament_selection_impl(shuffle1[i + 2], shuffle1[i + 3], ndr, pop_cd, m_e);
+                 children = detail::sbx_crossover_impl(pop.get_x()[parent1_idx], pop.get_x()[parent2_idx], bounds, dim_i,
+-                                                 m_cr, m_eta_c, m_e);
++                                                      m_cr, m_eta_c, m_e);
+                 detail::polynomial_mutation_impl(children.first, bounds, dim_i, m_m, m_eta_m, m_e);
+                 detail::polynomial_mutation_impl(children.second, bounds, dim_i, m_m, m_eta_m, m_e);
+                 // we use prob to evaluate the fitness so
+@@ -282,7 +284,7 @@ population nsga2::evolve(population pop) const
+                 parent1_idx = detail::mo_tournament_selection_impl(shuffle2[i], shuffle2[i + 1], ndr, pop_cd, m_e);
+                 parent2_idx = detail::mo_tournament_selection_impl(shuffle2[i + 2], shuffle2[i + 3], ndr, pop_cd, m_e);
+                 children = detail::sbx_crossover_impl(pop.get_x()[parent1_idx], pop.get_x()[parent2_idx], bounds, dim_i,
+-                                                 m_cr, m_eta_c, m_e);
++                                                      m_cr, m_eta_c, m_e);
+                 detail::polynomial_mutation_impl(children.first, bounds, dim_i, m_m, m_eta_m, m_e);
+                 detail::polynomial_mutation_impl(children.second, bounds, dim_i, m_m, m_eta_m, m_e);
+                 // we use prob to evaluate the fitness so
+diff --git a/src/algorithms/nspso.cpp b/src/algorithms/nspso.cpp
+index 38ea1e9e..693cc926 100644
+--- a/src/algorithms/nspso.cpp
++++ b/src/algorithms/nspso.cpp
+@@ -31,8 +31,6 @@ see https://www.gnu.org/licenses/. */
+ #include <utility>
+ #include <vector>
+ 
+-#include <boost/serialization/optional.hpp>
+-
+ #include <pagmo/algorithm.hpp>
+ #include <pagmo/algorithms/nspso.hpp>
+ #include <pagmo/bfe.hpp>
+@@ -45,6 +43,10 @@ see https://www.gnu.org/licenses/. */
+ #include <pagmo/utils/generic.hpp>
+ #include <pagmo/utils/multi_objective.hpp>
+ 
++// NOTE: apparently this must be included *after*
++// the other serialization headers.
++#include <boost/serialization/optional.hpp>
++
+ namespace pagmo
+ {
+ 
+diff --git a/src/algorithms/pso_gen.cpp b/src/algorithms/pso_gen.cpp
+index 8282ef5d..76fbb4b7 100644
+--- a/src/algorithms/pso_gen.cpp
++++ b/src/algorithms/pso_gen.cpp
+@@ -38,8 +38,6 @@ see https://www.gnu.org/licenses/. */
+ #include <string>
+ #include <vector>
+ 
+-#include <boost/serialization/optional.hpp>
+-
+ #include <pagmo/algorithm.hpp>
+ #include <pagmo/algorithms/pso_gen.hpp>
+ #include <pagmo/exceptions.hpp>
+@@ -49,6 +47,10 @@ see https://www.gnu.org/licenses/. */
+ #include <pagmo/types.hpp>
+ #include <pagmo/utils/generic.hpp>
+ 
++// NOTE: apparently this must be included *after*
++// the other serialization headers.
++#include <boost/serialization/optional.hpp>
++
+ namespace pagmo
+ {
+ 

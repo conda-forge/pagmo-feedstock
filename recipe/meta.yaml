@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/esa/pagmo2/archive/v{{ version }}.tar.gz
   sha256: 07977be690b512ea11fc40d5b8bfa0a7a8507ce9053a615c2bc4725d355ef9a8
+  patches:
+    - boost_fix.diff
 
 build:
   number: 2
