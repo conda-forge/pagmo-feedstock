@@ -1,4 +1,4 @@
-{% set version = "2.15.0" %}
+{% set version = "2.16.0" %}
 
 package:
   name: pagmo
@@ -6,17 +6,16 @@ package:
 
 source:
   url: https://github.com/esa/pagmo2/archive/v{{ version }}.tar.gz
-  sha256: 07977be690b512ea11fc40d5b8bfa0a7a8507ce9053a615c2bc4725d355ef9a8
+  sha256: 076918ca975e2b45eedd85b65da0de650d4bd0b3f86182c0c144c7fdc191185b
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win and vc<14]
 
 requirements:
   build:
-    - {{ compiler('cxx') }}            # [not win]
-    - {{ compiler('c') }}              # [not win]
-    - vs2017_{{ target_platform  }}    # [win]
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
     - cmake
 
 outputs:
@@ -81,7 +80,7 @@ outputs:
 
 about:
   home: https://esa.github.io/pagmo2/
-  license: GPL v3 and LGPL v3
+  license: GPL-3.0 AND LGPL-3.0
   license_file: COPYING.lgpl3
   summary: A C++ platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
 
