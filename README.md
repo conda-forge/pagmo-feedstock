@@ -5,11 +5,9 @@ Home: https://esa.github.io/pagmo2/
 
 Package license: GPL-3.0 AND LGPL-3.0
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pagmo-feedstock/blob/master/LICENSE.txt)
 
 Summary: A C++ platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
-
-
 
 Current build status
 ====================
