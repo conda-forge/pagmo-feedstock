@@ -80,7 +80,7 @@ outputs:
 
 about:
   home: https://esa.github.io/pagmo2/
-  license: GPL-3.0 AND LGPL-3.0
+  license: GPL-3.0-or-later OR LGPL-3.0-or-later
   license_file: COPYING.lgpl3
   summary: A C++ platform to perform parallel computations of optimisation tasks (global and local) via the asynchronous generalized island model
 
