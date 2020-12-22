@@ -3,7 +3,7 @@ About pagmo
 
 Home: https://esa.github.io/pagmo2/
 
-Package license: GPL-3.0 AND LGPL-3.0
+Package license: GPL-3.0-or-later OR LGPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pagmo-feedstock/blob/master/LICENSE.txt)
 
