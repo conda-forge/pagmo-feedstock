@@ -26,7 +26,7 @@ outputs:
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt  # [unix]
+        - ipopt
       run:
         # NOTE: nlopt, tbb and ipopt
         # use run_exports().
@@ -60,7 +60,7 @@ outputs:
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt  # [unix]
+        - ipopt
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
