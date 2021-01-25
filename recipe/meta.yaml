@@ -9,7 +9,7 @@ source:
   sha256: 45f2039f2198b6edadf81bdefb10a228f9dd087940c1f1ab1882098f16581df0
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and vc<14]
 
 requirements:
@@ -64,7 +64,7 @@ outputs:
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
-        - boost-cpp
+        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
         - tbb-devel
     files:
       - include/pagmo            # [not win]
