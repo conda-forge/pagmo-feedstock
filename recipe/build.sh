@@ -4,9 +4,9 @@ mkdir build
 cd build
 
 if [[ "$target_platform" == osx-* ]]; then
-    export ENABLE_TESTS=no
+    export ENABLE_TESTS=yes
     # Workaround for compile issue on older OSX SDKs.
-    export CXXFLAGS="$CXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
+    export CXXFLAGS="$CXXFLAGS -fno-aligned-allocation"
 else
     LDFLAGS="-lrt ${LDFLAGS}"
     export ENABLE_TESTS=yes
