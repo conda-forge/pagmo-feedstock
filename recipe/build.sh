@@ -5,6 +5,8 @@ cd build
 
 if [[ "$target_platform" == osx-* ]]; then
     export ENABLE_TESTS=no
+    # Workaround for compile issue on older OSX SDKs.
+    export CXXFLAGS="$CXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
 else
     LDFLAGS="-lrt ${LDFLAGS}"
     export ENABLE_TESTS=yes
