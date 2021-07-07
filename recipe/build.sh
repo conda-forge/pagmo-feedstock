@@ -23,8 +23,6 @@ cmake ${CMAKE_ARGS} \
     -DPAGMO_BUILD_TUTORIALS=yes \
     ..
 
-make -j${CPU_COUNT} VERBOSE=1
+make install -j${CPU_COUNT}
 
-ctest -j${CPU_COUNT} --output-on-failure
-
-make install
+ctest -j${CPU_COUNT} --output-on-failure --timeout 100
