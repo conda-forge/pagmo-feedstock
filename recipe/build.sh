@@ -11,7 +11,7 @@ else
 fi
 
 # NOTE: ipopt and nlopt not yet fully available on non-x86.
-if [[ "$target_platform" == linux-aarch64 ||  "$target_platform" == linux-ppc64le ]]; then
+if [[ "$target_platform" == linux-aarch64 ||  "$target_platform" == linux-ppc64le || "$target_platform" == osx-arm64* ]]; then
     export ENABLE_IPOPT=no
 else
     export ENABLE_IPOPT=yes
