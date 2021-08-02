@@ -9,7 +9,7 @@ source:
   sha256: 1b95b036f75e6fa0b21082ab228dbd63cd18ca10d9622ac53629245e0f95c35c
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and vc<14]
 
 requirements:
@@ -17,6 +17,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - cmake
+    - make    # [unix]
 
 outputs:
   - name: pagmo
@@ -26,7 +27,7 @@ outputs:
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt
+        - ipopt     # [x86]
       run:
         # NOTE: nlopt, tbb and ipopt
         # use run_exports().
@@ -53,14 +54,14 @@ outputs:
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
         - {{ pin_compatible('nlopt', max_pin='x.x') }}
-        - {{ pin_compatible('ipopt', max_pin='x.x') }}
+        - {{ pin_compatible('ipopt', max_pin='x.x') }}      # [x86]
     requirements:
       host:
         - eigen
         - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt
+        - ipopt       # [x86]
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
