@@ -24,7 +24,7 @@ outputs:
     requirements:
       host:
         - eigen
-        - nlopt
+        - nlopt     # [not arm64]
         - boost-cpp
         - tbb-devel
         - ipopt     # [x86]
@@ -53,12 +53,12 @@ outputs:
         # pagmo's API and ABI change at minor rev bumps.
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
-        - {{ pin_compatible('nlopt', max_pin='x.x') }}
+        - {{ pin_compatible('nlopt', max_pin='x.x') }}      # [not arm64]
         - {{ pin_compatible('ipopt', max_pin='x.x') }}      # [x86]
     requirements:
       host:
         - eigen
-        - nlopt
+        - nlopt       # [not arm64]
         - boost-cpp
         - tbb-devel
         - ipopt       # [x86]

@@ -10,10 +10,17 @@ else
     LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
+# NOTE: ipopt and nlopt not yet fully available on non-x86.
 if [[ "$target_platform" == linux-aarch64 ||  "$target_platform" == linux-ppc64le ]]; then
     export ENABLE_IPOPT=no
 else
     export ENABLE_IPOPT=yes
+fi
+
+if [[ "$target_platform" == osx-arm64* ]]; then
+    export ENABLE_NLOPT=no
+else
+    export ENABLE_NLOPT=yes
 fi
 
 cmake ${CMAKE_ARGS} \
@@ -22,7 +29,7 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DPAGMO_WITH_EIGEN3=yes \
-    -DPAGMO_WITH_NLOPT=yes \
+    -DPAGMO_WITH_NLOPT=$ENABLE_NLOPT \
     -DPAGMO_WITH_IPOPT=$ENABLE_IPOPT \
     -DPAGMO_BUILD_TESTS=yes \
     -DPAGMO_ENABLE_IPO=yes \
