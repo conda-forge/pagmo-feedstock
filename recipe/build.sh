@@ -23,6 +23,11 @@ else
     export ENABLE_NLOPT=yes
 fi
 
+if test "$target_platform" != "linux-ppc64le"
+then
+  CMAKE_ARGS="${CMAKE_ARGS} -DPAGMO_ENABLE_IPO=ON"
+fi
+
 cmake ${CMAKE_ARGS} \
     -DBoost_NO_BOOST_CMAKE=ON \
     -DCMAKE_BUILD_TYPE=Release \
@@ -32,14 +37,11 @@ cmake ${CMAKE_ARGS} \
     -DPAGMO_WITH_NLOPT=$ENABLE_NLOPT \
     -DPAGMO_WITH_IPOPT=$ENABLE_IPOPT \
     -DPAGMO_BUILD_TESTS=yes \
-    -DPAGMO_ENABLE_IPO=yes \
     -DPAGMO_BUILD_TUTORIALS=yes \
     ..
 
-make -j${CPU_COUNT} VERBOSE=1
+make install -j${CPU_COUNT}
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-    ctest -j${CPU_COUNT} --output-on-failure
+    ctest -j${CPU_COUNT} --output-on-failure --timeout 100 -E fork_island
 fi
-
-make install

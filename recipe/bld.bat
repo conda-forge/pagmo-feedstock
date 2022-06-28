@@ -2,7 +2,8 @@ mkdir build
 cd build
 
 cmake ^
-    -G "Visual Studio 15 2017 Win64" ^
+    -G "NMake Makefiles" ^
+    -DCMAKE_BUILD_TYPE=Release ^
     -DBoost_NO_BOOST_CMAKE=ON ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
@@ -14,6 +15,6 @@ cmake ^
     -DPAGMO_ENABLE_IPO=yes ^
     ..
 
-cmake --build . --config RelWithDebInfo --target install
+cmake --build . --config Release --target install
 
 ctest
