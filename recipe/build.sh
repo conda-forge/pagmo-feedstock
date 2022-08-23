@@ -42,6 +42,6 @@ cmake ${CMAKE_ARGS} \
 
 make install -j${CPU_COUNT}
 
-if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-    ctest -j${CPU_COUNT} --output-on-failure --timeout 100 -E fork_island
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+    ctest -j${CPU_COUNT} --output-on-failure --timeout 1000 -E fork_island
 fi
