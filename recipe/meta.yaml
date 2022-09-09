@@ -9,7 +9,7 @@ source:
   sha256: 5ad40bf3aa91857a808d6b632d9e1020341a33f1a4115d7a2b78b78fd063ae31
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -23,10 +23,10 @@ outputs:
     requirements:
       host:
         - eigen
-        - nlopt     # [not arm64]
+        - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt     # [x86]
+        - ipopt
       run:
         # NOTE: nlopt, tbb and ipopt
         # use run_exports().
@@ -52,15 +52,15 @@ outputs:
         # pagmo's API and ABI change at minor rev bumps.
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
-        - {{ pin_compatible('nlopt', max_pin='x.x') }}      # [not arm64]
-        - {{ pin_compatible('ipopt', max_pin='x.x') }}      # [x86]
+        - {{ pin_compatible('nlopt', max_pin='x.x') }}
+        - {{ pin_compatible('ipopt', max_pin='x.x') }}
     requirements:
       host:
         - eigen
-        - nlopt       # [not arm64]
+        - nlopt
         - boost-cpp
         - tbb-devel
-        - ipopt       # [x86]
+        - ipopt
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
