@@ -9,7 +9,7 @@ source:
   sha256: 5ad40bf3aa91857a808d6b632d9e1020341a33f1a4115d7a2b78b78fd063ae31
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
@@ -53,7 +53,9 @@ outputs:
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
         - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
         - {{ pin_compatible('nlopt', max_pin='x.x') }}
-        - {{ pin_compatible('ipopt', max_pin='x.x') }}
+        # NOTE: ipopt might change the ABI at minor version bumps:
+        # https://github.com/conda-forge/ipopt-feedstock/issues/85#issuecomment-1168571776
+        - {{ pin_compatible('ipopt', max_pin='x.x.x') }}
     requirements:
       host:
         - eigen
