@@ -9,7 +9,7 @@ source:
   sha256: 701ada528de7d454201e92a5d88903dd1c22ea64f43861d9694195ddfef82a70
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -24,13 +24,12 @@ outputs:
       host:
         - eigen
         - nlopt
-        - boost-cpp
+        - libboost-devel
         - tbb-devel
         - ipopt
       run:
         # NOTE: nlopt, tbb and ipopt
         # use run_exports().
-        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
     files:
       - lib/libpagmo*{{ SHLIB_EXT }}   # [not win]
       - lib/libpagmo.so.*              # [linux]
@@ -51,7 +50,7 @@ outputs:
         # does not need to link to tbb).
         # pagmo's API and ABI change at minor rev bumps.
         - {{ pin_subpackage('pagmo', max_pin='x.x') }}
-        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
+        - {{ pin_compatible('libboost-devel', max_pin='x.x') }}
         - {{ pin_compatible('nlopt', max_pin='x.x') }}
         # NOTE: ipopt might change the ABI at minor version bumps:
         # https://github.com/conda-forge/ipopt-feedstock/issues/85#issuecomment-1168571776
@@ -60,13 +59,11 @@ outputs:
       host:
         - eigen
         - nlopt
-        - boost-cpp
         - tbb-devel
         - ipopt
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
         - eigen
-        - {{ pin_compatible('boost-cpp', max_pin='x.x') }}
         - tbb-devel
     files:
       - include/pagmo            # [not win]
