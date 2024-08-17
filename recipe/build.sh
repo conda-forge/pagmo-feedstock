@@ -10,8 +10,7 @@ else
     LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
-if test "$target_platform" != "linux-ppc64le"
-then
+if [[ "$target_platform" != "linux-ppc64le" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DPAGMO_ENABLE_IPO=ON"
 fi
 
