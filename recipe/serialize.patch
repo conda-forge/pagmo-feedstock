@@ -1,0 +1,60 @@
+diff --git a/include/pagmo/algorithms/bee_colony.hpp b/include/pagmo/algorithms/bee_colony.hpp
+index c44588de..bec6fbe0 100644
+--- a/include/pagmo/algorithms/bee_colony.hpp
++++ b/include/pagmo/algorithms/bee_colony.hpp
+@@ -165,8 +165,8 @@ public:
+ private:
+     // Object serialization
+     friend class boost::serialization::access;
+-    template <typename Archive>
+-    void serialize(Archive &, unsigned);
++    template <class Archive>
++    void serialize(Archive &, const unsigned int);
+ 
+     unsigned m_gen;
+     unsigned m_limit;
+diff --git a/include/pagmo/problems/ackley.hpp b/include/pagmo/problems/ackley.hpp
+index f3456142..429e4aaa 100644
+--- a/include/pagmo/problems/ackley.hpp
++++ b/include/pagmo/problems/ackley.hpp
+@@ -83,8 +83,8 @@ struct PAGMO_DLL_PUBLIC ackley {
+ private:
+     // Object serialization
+     friend class boost::serialization::access;
+-    template <typename Archive>
+-    void serialize(Archive &, unsigned);
++    template <class Archive>
++    void serialize(Archive &, const unsigned int);
+ };
+ 
+ } // namespace pagmo
+diff --git a/src/algorithms/bee_colony.cpp b/src/algorithms/bee_colony.cpp
+index 1e188adb..b52e16de 100644
+--- a/src/algorithms/bee_colony.cpp
++++ b/src/algorithms/bee_colony.cpp
+@@ -261,8 +261,8 @@ std::string bee_colony::get_extra_info() const
+ }
+ 
+ // Object serialization
+-template <typename Archive>
+-void bee_colony::serialize(Archive &ar, unsigned)
++template <class Archive>
++void bee_colony::serialize(Archive &ar, const unsigned int)
+ {
+     detail::archive(ar, m_gen, m_limit, m_e, m_seed, m_verbosity, m_log);
+ }
+diff --git a/src/problems/ackley.cpp b/src/problems/ackley.cpp
+index 6484403e..d2742646 100644
+--- a/src/problems/ackley.cpp
++++ b/src/problems/ackley.cpp
+@@ -99,8 +99,8 @@ vector_double ackley::best_known() const
+ }
+ 
+ // Object serialization
+-template <typename Archive>
+-void ackley::serialize(Archive &ar, unsigned)
++template <class Archive>
++void ackley::serialize(Archive &ar, const unsigned int)
+ {
+     ar &m_dim;
+ }
