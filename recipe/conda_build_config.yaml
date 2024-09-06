@@ -1,0 +1,5 @@
+# fatal error: in "cmaes_serialization_test": boost::archive::archive_exception: unregistered void cast N5pagmo6detail10algo_innerINS_5cmaesEEE<-N5pagmo6detail15algo_inner_baseE 
+c_compiler_version:          # [osx and x86_64]
+  - '16'                     # [osx and x86_64]
+cxx_compiler_version:        # [osx and x86_64]
+  - '16'                     # [osx and x86_64]
