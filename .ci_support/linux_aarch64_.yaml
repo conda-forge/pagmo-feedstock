@@ -11,7 +11,7 @@ c_stdlib_version:
 cdt_arch:
 - aarch64
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -27,7 +27,7 @@ ipopt:
 libboost_devel:
 - '1.86'
 nlopt:
-- '2.8'
+- '2.9'
 target_platform:
 - linux-aarch64
 tbb_devel:
@@ -35,5 +35,3 @@ tbb_devel:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - c_stdlib_version
-  - cdt_name
