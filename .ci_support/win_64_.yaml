@@ -13,7 +13,7 @@ ipopt:
 libboost_devel:
 - '1.86'
 nlopt:
-- '2.9'
+- '2.10'
 target_platform:
 - win-64
 tbb_devel:
