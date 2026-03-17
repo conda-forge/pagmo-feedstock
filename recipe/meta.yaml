@@ -23,7 +23,7 @@ outputs:
   - name: pagmo
     requirements:
       host:
-        - eigen
+        - eigen >=3.4.0,<5
         - nlopt
         - libboost-devel
         - tbb-devel
@@ -58,13 +58,13 @@ outputs:
         - {{ pin_compatible('ipopt', max_pin='x.x.x') }}
     requirements:
       host:
-        - eigen
+        - eigen >=3.4.0,<5
         - nlopt
         - tbb-devel
         - ipopt
       run:
         - {{ pin_subpackage("pagmo", exact=True) }}
-        - eigen
+        - eigen >=3.4.0,<5
         - tbb-devel
         - libboost-devel
     files:
