@@ -36,7 +36,7 @@ outputs:
       files:
         - if: unix
           then:
-            - lib/libpagmo*${SHLIB_EXT}*
+            - lib/libpagmo*${{ SHLIB_EXT }}
           else:
             - Library/bin/pagmo.dll
     tests:
