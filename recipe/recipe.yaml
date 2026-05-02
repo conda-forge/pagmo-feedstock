@@ -39,25 +39,17 @@ outputs:
     inherit: pagmo-staging
     build:
       files:
-        - if: linux
+        - if: unix
           then:
-            - lib/libpagmo.so.*
-        - if: osx
-          then:
-            - lib/libpagmo.*.dylib
-        - if: win
-          then:
+            - lib/libpagmo*
+          else:
             - Library/bin/pagmo.dll
     tests:
       - script:
-          - if: linux
+          - if: unix
             then:
-              - test -f $PREFIX/lib/libpagmo${SHLIB_EXT}.*.*
-          - if: osx
-            then:
-              - test -f $PREFIX/lib/libpagmo.*.*.${SHLIB_EXT}
-          - if: win
-            then:
+              - test -f $PREFIX/lib/libpagmo${SHLIB_EXT}
+            else:
               - if not exist %PREFIX%\\Library\\bin\\pagmo.dll exit 1
 
   - package:
@@ -93,6 +85,7 @@ outputs:
             - Library/include/pagmo
             - Library/lib/pagmo.lib
             - Library/lib/cmake/pagmo
+
     tests:
       - script:
           - if: unix
