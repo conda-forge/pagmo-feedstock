@@ -50,10 +50,14 @@ outputs:
             - Library/bin/pagmo.dll
     tests:
       - script:
-          - if: unix
+          - if: linux
             then:
-              - test -f $PREFIX/lib/libpagmo${SHLIB_EXT}
-            else:
+              - test -f $PREFIX/lib/libpagmo${SHLIB_EXT}.*.*
+          - if: osx
+            then:
+              - test -f $PREFIX/lib/libpagmo.*.*.${SHLIB_EXT}
+          - if: win
+            then:
               - if not exist %PREFIX%\\Library\\bin\\pagmo.dll exit 1
 
   - package:
