@@ -13,8 +13,8 @@ build:
   number: 14
 
 outputs:
-  - package:
-      name: pagmo
+  - staging:
+      name: pagmo-staging
     requirements:
       build:
         - ${{ compiler('cxx') }}
@@ -33,11 +33,20 @@ outputs:
         - if: unix
           then: build.sh
           else: build.bat
+
+  - package:
+      name: pagmo
+    inherit: pagmo-staging
+    build:
       files:
-        - if: unix
+        - if: linux
           then:
-            - lib/libpagmo*${{ SHLIB_EXT }}
-          else:
+            - lib/libpagmo.so.*
+        - if: osx
+          then:
+            - lib/libpagmo.*.dylib
+        - if: win
+          then:
             - Library/bin/pagmo.dll
     tests:
       - script:
@@ -49,18 +58,10 @@ outputs:
 
   - package:
       name: pagmo-devel
+    inherit: pagmo-staging
     requirements:
-      build:
-        - ${{ compiler('cxx') }}
-        - ${{ compiler('c') }}
-        - ${{ stdlib("c") }}
-        - cmake
-        - ninja
       host:
-        - eigen >=3.4.0,<5
-        - nlopt
-        - tbb-devel
-        - ipopt
+        - pagmo
       run:
         - ${{ pin_subpackage("pagmo", exact=True) }}
         - eigen >=3.4.0,<5
@@ -79,10 +80,6 @@ outputs:
         # https://github.com/conda-forge/ipopt-feedstock/issues/85#issuecomment-1168571776
         - ${{ pin_compatible('ipopt', upper_bound='x.x.x') }}
     build:
-      script:
-        - if: unix
-          then: build.sh
-          else: build.bat
       files:
         - if: unix
           then:
