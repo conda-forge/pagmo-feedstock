@@ -19,6 +19,7 @@ cmake ${CMAKE_ARGS} -G Ninja -LAH \
     -DPAGMO_WITH_IPOPT=yes \
     -DPAGMO_BUILD_TESTS=yes \
     -DPAGMO_BUILD_TUTORIALS=yes \
+    -DCMAKE_UNITY_BUILD=ON \
     -B build .
 
 cmake --build build --target install --parallel ${CPU_COUNT}
