@@ -12,7 +12,7 @@ source:
     - eigen5x.patch
 
 build:
-  number: 15
+  number: 16
 
 outputs:
   - staging:
@@ -62,7 +62,7 @@ outputs:
         - pagmo
       run:
         - ${{ pin_subpackage("pagmo", exact=True) }}
-        - eigen >=3.4.0,<5
+        - eigen
         - tbb-devel
         - libboost-devel
       run_exports:
