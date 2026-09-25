@@ -13,5 +13,5 @@ cmake ${CMAKE_ARGS} -G Ninja -LAH \
 cmake --build build --target install --parallel ${CPU_COUNT}
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
-    ctest --test-dir build -j${CPU_COUNT} --output-on-failure --timeout 1000 -E fork_island
+    ctest --test-dir build -j${CPU_COUNT} --output-on-failure --timeout 200
 fi
